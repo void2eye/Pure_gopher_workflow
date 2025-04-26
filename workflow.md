@@ -1,15 +1,26 @@
 docker pull asappinc/ubuntu18
+
 docker run --privileged --name mysqltest -it asappinc/ubuntu18
+
 apt update
+
 apt install -y mysql-server-5.7
+
 service mysql start
+
 mysql -uroot -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';"
+
 mysql -uroot -e "FLUSH PRIVILEGES;"
+
+
 
 ---------------
 
 tcpdump -i lo port 3306 -w mysql.pcap
+
 mysql --ssl-mode=DISABLED -u root -h 127.0.0.1 -e  'show databases;'
+
+
 
 
 ---------------------
